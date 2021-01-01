@@ -79,7 +79,7 @@
             </div>
         </nav>
 
-        <main class="container">
+        <main class="container" style="margin-bottom: 50px;margin-top: 50px;">
             @yield('content')
         </main>
     </div>
