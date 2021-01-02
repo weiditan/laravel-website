@@ -5,7 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">
+                    @if(!empty(Auth::user()->getRoleNames()))
+                        @foreach(Auth::user()->getRoleNames() as $v)
+                            {{ $v }}
+                        @endforeach
+                    @endif
+                    {{ __('Dashboard') }}
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
