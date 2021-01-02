@@ -2,17 +2,16 @@
 
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Edit Role</h2>
-        </div>
-        <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
-        </div>
+<div class="d-flex">
+    <div class="p-2">
+        <h2>Edit Role</h2>
+    </div>
+    <div class="ml-auto p-2">
+        <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
     </div>
 </div>
 
+<br/>
 
 @if (count($errors) > 0)
     <div class="alert alert-danger">
@@ -25,6 +24,7 @@
     </div>
 @endif
 
+<br/>
 
 {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
 <div class="row">
