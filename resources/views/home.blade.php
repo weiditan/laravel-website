@@ -11,6 +11,7 @@
                             {{ $v }}
                         @endforeach
                     @endif
+
                     {{ __('Dashboard') }}
                 </div>
 
