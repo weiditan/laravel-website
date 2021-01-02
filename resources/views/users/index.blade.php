@@ -2,16 +2,19 @@
 
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12 margin-tb">
-        <div class="pull-left">
-            <h2>Users Management</h2>
-        </div>
-        <div class="pull-right">
+<div class="d-flex flex-row">
+    <div class="p-2">
+        <h2>Users Management</h2>
+    </div>
+
+    @can('user-create')
+        <div class="ml-auto p-2">
             <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
         </div>
-    </div>
+    @endcan
 </div>
+
+<br/>
 
 
 @if ($message = Session::get('success'))
@@ -20,6 +23,7 @@
 </div>
 @endif
 
+<br/>
 
 <table class="table table-bordered">
  <tr>
@@ -43,10 +47,16 @@
     </td>
     <td>
        <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-       <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
-        {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-        {!! Form::close() !!}
+
+        @can('user-edit')
+            <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+        @endcan
+
+        @can('user-delete')
+            {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+            {!! Form::close() !!}
+        @endcan
     </td>
   </tr>
  @endforeach
@@ -54,8 +64,5 @@
 
 
 {!! $data->render() !!}
-
-
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
 
 @endsection
